@@ -1,0 +1,68 @@
+<html>
+ <head>
+   <title>Big smokes architecture</title>	
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+ </head>
+
+ <body>
+  <div id="page">
+   <div id="content">
+      <center><h1><a href="#">BIGSMOKES ARCHITECTURE</a></h1></center>
+      <br/>
+      
+      <center><H2>Choices/ Assumptions</H2></center>
+      <br/>
+      
+      <ul>
+        <li> Since J2EETM 1.4 or higher can be used, I will choose Java EE 5 because it is a mature technology, and it respects the standard EJB3 which are more easier than EJB2 (J2EETM 1.4). We have not to create home and Remote. All is done easely using annotations. Java EE 5 respects also JPA 1.0 standard.</li>
+        <br/>
+        <li> We will separates the application into 3 majors components :   <br/>
+                -   The web components which are either JSP or servlets. We will use the MVC pattern. JSP will only display informations and servlet will take the part of the controller. FacesServlet will be the controller<br/>
+                -   The business components which are the EJB. We will use the 3 types of EJB (Session bean/ Entity bean/ Message driver bean) in this application like we will see in the other diagrams. <br/>
+                -   The data layer components which will use JPA 1.0.
+        </li>
+        <br/>
+        <li> The use of the EJB stateless session bean will increase the scalability and the availability of bigsmokes because the application server manages a pool of stateless session bean. 
+        </li>
+        <br/> 
+        <li> The inventory system uses a oracle database. 
+        </li>
+        <br/>
+        <li> We need a login module in the application. The customer must authenficate himself in the system before paying. We will know his address but also that can increase the security. A customer can register himself to bigsmokes giving his address, login, email and password. This module will not be describe in this document because it is not ask.
+        </li>
+        <br/>
+        <li> The web module will have a FORM method authorisation. It will use JAAS and it will defined in web.xml.
+        </li>
+       <br/>
+       <li>The password will be stored using MD5 encryption in the database.  After the login connection, the browser (Which is the client) will discuss with the entreprise application using HTTPS (HTTP over SSL) with a AES 256 bits encryption until the logout.
+       </li>
+       <br/>
+       <li> To increase the performance, the availability and the scalability of the application, we will use 3 applications servers which are load balanced, 1 database and another database but only for recovery. We will use a load balancing solution like we can see in the deployment diagram. The charge will be well distributed between all the servers.
+       </li>
+       <br/>
+        <li> The communication between the bank Merchant Bank and bigsmokes will use webservices with HTTPS (HTTP over SSL). The encryption will be AES with 256 bits.
+        </li>
+        <br/>
+        <li> To send the email to the customer, we will not send synchronously the email to the customer. The order bean will be send to a topic. After that, a message driver bean EmailSenderBean will take this order bean and will transform it in email and send it using javamail. If the email server crashes, that will not affect the availability and the performance of the application (Because it is done assynchronously).
+        </li>
+        <br/>
+        <li> If for example, a customer wants a cigar that Bigsmokes doesn't have in their own inventory system, it can be a good idea to ask the manufacturer who can produces this cigar if he has this cigar and how many time, this cigar can be available. The manufacturer supports JMS so it can be a good idea to ask him and the performance will not be affect a lot. If the manufacturer says that he can deliver this cigar to bigsmokes, we can say to the customer that this product can be available in X days depending on what respond the manufacturer.
+        </li>
+        <br/>
+        <li> Because Freight Movers has his own API and International Shippers has web services. We will use the adapter design pattern because the 2 ways of sending request are different. We will create an interface to send request for shipping and 2 implementations of this interface, one for Freight Movers and one for International Shippers. The implementation for Freight Movers will call their own API whereas the implementation of International Shippers calls web services.
+        </li>
+        <br/>
+        <li> We must have an international application to sell a maximum of cigars. For all the JSP, we will have a message.properties per country (For example, message_fr.properties, message_en.properties). We will respect internationalisation which is use in JEE standard.   
+        </li>       
+      </ul>
+        
+  
+   	  </table>
+      
+      
+   </div> 
+  </div> 
+ </body>
+
+</html>

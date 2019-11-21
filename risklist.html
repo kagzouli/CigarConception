@@ -1,0 +1,41 @@
+<html>
+ <head>
+   <title>Big smokes architecture</title>	
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+ </head>
+
+ <body>
+  <div id="page">
+   <div id="content">
+      <center><h1><a href="#">BIGSMOKES ARCHITECTURE</a></h1></center>
+      <br/>
+      
+      <center><H2>Risk list and mitigation strategy</H2></center>
+      <br/>
+      <br/>
+      
+      <ul>
+        <li> The communication between Merchant Bank and BigSmokes is very crucial and can be a source of external attack. If bigsmokes doesn't crypt the data in the conversation, a thief can use the man of the middle technic to steal the cart number, the cart type and the expiration date. It is very important to secure this communication between bigsmokes and Merchant Bank using webservices HTTPS (HTTP over SSL) with an AES under 256 bits encryption. It will be very very very difficult for somebody to use the man of the middle technic with this encryption, it is impossible to break the key easely and it will increases the security of big smokes application. The application will be very secur.  
+        </li>
+        
+        <br/>
+        <br/>
+        <li> The user wants that the application will have very good performance and availability. The principal issue is that bigsmokes interacts with a lots of partners, and also with the email server company. For example, a crash of the email server can reduces the performance of the application. To reduce this impact, the email used to confirm the order will not be send synchronously by the stateless bean session service but will be store in a topic. So the email server will not be directly calls by this service. After that, a message driven bean EmailSenderBean will read assynchronously the topic and will send really the email order. We have only to be sure that the message will be persistent because otherwise it can be lost. We can use the same technic for shipping if the 2 companies (Freight Movers/International Shippers) don't be able to respect our requirements of performance and availability. For the bank, we can't use the same technic because we need a synchronous response of the bank. Without the bank acceptation, the order can not continue. 
+        </li>
+        
+        <br/>
+        <br/>
+        <li> We have to use load balancing for application servers. We will use 3 application servers because for example, if an application server crashs, the traffic will be reported to the 2 others application servers, the performance and the scalability will not be affected seriously. We can image a scenario where 2 servers crashs, one server will respond to all the customer, the availability and the scalability can be a little less good as we expected but the system will respond. We have to wait until the 2 crashed servers will restart to have a normal situation.
+        </li>
+      </ul>
+        
+  
+   	  </table>
+      
+      
+   </div> 
+  </div> 
+ </body>
+
+</html>

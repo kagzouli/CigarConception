@@ -1,0 +1,47 @@
+<html>
+ <head>
+   <title>Big smokes architecture</title>	
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+ </head>
+
+ <body>
+  <div id="page">
+   <div id="content">
+      <center><h1><a href="#">BIGSMOKES ARCHITECTURE</a></h1></center>
+      <br/>
+      <center><H2>Class diagrams</H2></center>
+      <br/>
+   
+      <br/>
+     <ul>
+      <li> We will, first of all, presents all the entities of the application. We will not represent the getter and the setter of all the attributes because it will complexify the diagram. We must create them if the development mode.
+      <br/>
+      Each order made by the customer contains cigar order line. Cigar order line contains the quantity and a reference of the cigar choose by the customer.
+      <br/>
+      <img src="images/entityclassdiagram.png" height="499" width="934" /> </li>
+      <br/>
+      <li>We will present the managed bean class diagram. All the managed bean are managed by the controller FacesServlet. We will also presents the relation between session bean and managed bean
+      <br/>
+      <br/>
+      <img src="images/managebeanclassdiagram.png" height="499" width="934" /> </li>
+      <br/>
+      <li> We can see in this diagram that the client doesn't call directly the session bean but use a business delegate to call the session bean . The business delegate is a very known design pattern and is use to hide the complexity of remote communication with business components.
+           For all the link between business delegate and the stateless session bean, we can use another pattern Service Locator. The role of Service Locator pattern is used for consistent approach to locating business components. For example, we will take the manageCigarBean : 
+    
+      <br/>
+      <img src="images/servicelocatorclassdiagram.png" height="499" width="934" /> </li>
+      <li>
+      For shipping request, we can see that we have 2 ways for sending the orders. Freight Movers uses their own API whereas International Shippers uses web service. We can have a own shipping contract which will be unic for sending shipping request. After that, we can create 2 implementation of this class for each shipping company.
+      This two class will call the API of the 2 shipping companies. We will use the adapter design pattern.
+      <br/>
+      <img src="images/shippingclassdiagram.png" height="499" width="934" /> </li>
+      <br/>      
+      </li>
+     </ul> 
+      
+   </div> 
+  </div> 
+ </body>
+
+</html>

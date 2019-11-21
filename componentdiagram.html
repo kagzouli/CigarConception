@@ -1,0 +1,71 @@
+<html>
+ <head>
+   <title>Big smokes architecture</title>	
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+ </head>
+
+ <body>
+  <div id="page">
+   <div id="content">
+      <center><h1><a href="#">BIGSMOKES ARCHITECTURE</a></h1></center>
+      <br/>
+      
+      <center><H2>Component diagrams</H2></center>
+      <br/>
+      
+      <ul>
+        <li>This is the component diagram for the internal bigsmokes system :
+          <br/>
+          <br/>
+          <img src="images/internalcomponentdiagram.png" height="499" width="934" />
+        </li>
+        <br/>
+        <li>This is the description of some components above : 
+          <br/>
+          <br/>
+           - <b>SearchCigar.jsp</b> : Display the categories and the search for all the cigars by category.
+           <br/>
+           - <b>ViewCigar.jsp</b> : Display the information about the current cigar.
+           <br/>
+           - <b>ShopCart.jsp</b> : Display the cart of the current customer.
+           <br/>
+          - <b>checkorder.jsp</b> : Display the cart, and the customer can choose the shipping method and the quantity and valid to order.
+          <br/>
+          - <b>confirmcheckorder.jsp</b> : Display the number order and the cart customer.
+          <br/>
+          - <b>FacesServlet</b> : This is the main controller of the application.
+          <br/>
+          - <b>ManageCigarAction</b> : This is the managed bean for the cigar.
+          <br/>
+          - <b>ManageCartAction</b> : This is the managed bean for the cart.
+          <br/>
+          - <b>OrderDelegate</b> : This is the business delegate for the order
+          <br/>
+          - <b>ManageCigarDelegate</b> : This is the business delegate for cigar.
+          <br/>
+          - <b>ManageCartDelegate</b> : This is the business delegate for cart.
+          <br/>
+          - <b>ServiceLocator</b> : The service locator use to find the stateless session bean.
+          <br/>
+        </li>
+        </li>
+        <br/>
+        <br/>
+        <li>This is the component diagram on how interact all the components in the application
+          <br/>
+          <br/>
+          <img src="images/generalcomponentdiagram.png" height="499" width="934" /> </li>
+        </li>
+        <br/>
+      </ul>
+        
+  
+   	  </table>
+      
+      
+   </div> 
+  </div> 
+ </body>
+
+</html>

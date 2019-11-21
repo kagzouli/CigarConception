@@ -1,0 +1,62 @@
+ <html>
+ <head>
+   <title>Big smokes architecture</title>	
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+ </head>
+
+ <body>
+  <div id="page">
+   <div id="content">
+      <center><h1><a href="#">BIGSMOKES ARCHITECTURE</a></h1></center>
+      <br/>
+      
+      <center><H2>Deployment diagrams</H2></center>
+      <br/>
+      
+      <ul>
+        <li>This is the general deployment diagram that will be use for the application : 
+          <br/>
+          <img src="images/deploymentdiagram.png" height="499" width="934" /> </li>
+        </li>
+        <br/>
+        <br/>
+        <li> The application server will contains the bigsmokes EAR application which will be divided in 2 parts : the war and the EJB. We will not use a web container because it will be to heavy for the network and there is no need of it. We will use a <b>glassfish server 2.1 or 3</b> for the application server. Glassfish is the reference server for JEE 5 and it is free. The performance of this server are very good.
+        </li>
+        <br/>
+        <li> The war archive will be in the EAR and it will contains the presentation part, the controller part, the managed bean, the business delegate and the locator.
+        <br/>
+        <br/>  - <b>JSP</b>     : SearchCigar.jsp, ViewCigar.jsp, ShopCart.jsp, checkorder.jsp, confirmcheckorder.jsp
+        <br/>  - <b>Servlet</b> : FacesServlet
+        <br/>  - <b>Managed bean</b> : ManageCigarAction, ManageCartAction
+        <br/>  - <b>Service locator</b>  : ServiceLocator
+        <br/>  - <b>Business delegate</b> : ManageCigarDelegate, ManageCartDelegate, OrderDelegate 
+        
+      </li>
+      <br/>
+      <br/>
+        
+      <li> The EJB jar will be contains in the EAR. The EAR will be managed by the application server. The EJB jar contains the session bean (Stateful and stateless), the entity bean and the message driven bean.
+      <br/>
+      <br/>   - <b>stateful session bean</b>   :  ManageCartBean   
+      <br/>   - <b>stateless session bean</b>  :  ManageCigarBean, OrderBean
+      <br/>   - <b>message driver bean</b>     :  EMailSenderBean
+      <br/>   - <b>EntityBean</b>     :  Cigar, Order, CigarOrderLine, Category
+       </li>
+       <br/>
+       <br/>
+       <li> The database contains all the database table for cigars. It is the inventory system. It already exists. For the order tables, we have to create them.
+       </li>
+       
+       <br/>
+       <li> The application servers will be accessible from internet behind a firewall in a DMZ to decrease seriously the risk of attack.
+       </li>
+       
+   	  </ul>
+      
+      
+   </div> 
+  </div> 
+ </body>
+
+</html>
